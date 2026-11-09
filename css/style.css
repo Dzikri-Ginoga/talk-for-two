@@ -49,16 +49,36 @@ label,
     display: none;
 }
 
+/* Font Lucidity Condensed (Fallback ke font condensed jika file lokal belum dipasang) */
+@font-face {
+    font-family: 'Lucidity Condensed';
+    src: local('Lucidity Condensed'),
+         local('Lucidity-Condensed'),
+         local('LucidityCondensed'),
+         url('../asset/fonts/Lucidity-Condensed.otf') format('opentype'),
+         url('../asset/fonts/Lucidity-Condensed.ttf') format('truetype'),
+         url('../asset/fonts/LucidityCondensed.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.font-header,
+.header-badge,
+h1, h2, h3 {
+    font-family: 'Lucidity Condensed', 'Caveat', 'Patrick Hand', sans-serif;
+}
+
 .font-hand {
-    font-family: 'Patrick Hand', cursive;
+    font-family: 'Lucidity Condensed', 'Patrick Hand', cursive, sans-serif;
 }
 
 .font-sketch {
-    font-family: 'Caveat', cursive;
+    font-family: 'Lucidity Condensed', 'Caveat', cursive, sans-serif;
 }
 
 .font-title {
-    font-family: 'Fredoka', sans-serif;
+    font-family: 'Lucidity Condensed', 'Fredoka', sans-serif;
 }
 
 /* Gaya Kotak Sketsa Lilac dengan Garis Pink */
