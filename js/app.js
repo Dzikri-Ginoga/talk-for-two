@@ -2,9 +2,8 @@
    KONTROL APLIKASI UTAMA (APP.JS)
    - Audio SFX Synthesizer (Web Audio API)
    - Navigasi 5 Halaman (dengan Persistensi SessionStorage)
-   - Modal Preview Kategori Kartu & Upload Foto Terkompresi
-   - Modal Sesi Selesai (End-Game & Konfeti)
-   - Inisialisasi Saat Dimuat
+   - Modal Preview Visualisasi Kategori Kartu (Tanpa Teks Pertanyaan)
+   - Inisialisasi Tumpukan 4 Kartu Halaman 3 & Galeri Halaman 5
    ===================================================================== */
 
 const PAGE_STATE_KEY = 'TALK_ACTIVE_PAGE_V1';
@@ -29,7 +28,9 @@ function loadSoundPreference() {
 function updateSoundButtonUI() {
     const btn = document.getElementById('sound-toggle-btn');
     if (!btn) return;
-    btn.textContent = soundEnabled ? '🔊 Suara: ON' : '🔇 Suara: OFF';
+    btn.innerHTML = soundEnabled
+        ? '🔊<span class="hidden sm:inline"> Suara: ON</span>'
+        : '🔇<span class="hidden sm:inline"> Suara: OFF</span>';
     btn.setAttribute('aria-pressed', String(soundEnabled));
 }
 
@@ -55,7 +56,7 @@ function toggleSound() {
     if (soundEnabled) playSfx('click');
 }
 
-// Efek Suara Prosedural Sintetis (Bebas dari masalah koneksi / file hilang)
+// Efek Suara Prosedural Sintetis
 function playSfx(type) {
     if (!soundEnabled) return;
     try {
@@ -99,20 +100,6 @@ function playSfx(type) {
             gain.connect(ctx.destination);
             osc.start(now);
             osc.stop(now + 0.16);
-        } else if (type === 'fanfare') {
-            const notes = [523.25, 659.25, 783.99, 1046.50];
-            notes.forEach((freq, idx) => {
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(freq, now + idx * 0.12);
-                gain.gain.setValueAtTime(0.22, now + idx * 0.12);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.12 + 0.35);
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.start(now + idx * 0.12);
-                osc.stop(now + idx * 0.12 + 0.35);
-            });
         }
     } catch (e) {
         // Audio menunggu interaksi pertama pengguna
@@ -124,7 +111,6 @@ function goToPage(pageNum, silent = false) {
     const validPage = [1, 2, 3, 4, 5].includes(Number(pageNum)) ? Number(pageNum) : 1;
     if (!silent && typeof playSfx === 'function') playSfx('click');
 
-    // Dipakai CSS (mis. sembunyikan logo beruang di halaman selain 1 pada HP)
     document.body.dataset.page = String(validPage);
     try {
         sessionStorage.setItem(PAGE_STATE_KEY, String(validPage));
@@ -140,7 +126,6 @@ function goToPage(pageNum, silent = false) {
         const isActive = i === validPage;
         sec.classList.toggle('active', isActive);
 
-        // Pakai classList.toggle agar class layout dasar tetap utuh
         btn.classList.toggle('bg-pink-200', isActive);
         btn.classList.toggle('text-pink-900', isActive);
         btn.classList.toggle('font-bold', isActive);
@@ -164,20 +149,17 @@ function goToPage(pageNum, silent = false) {
     window.scrollTo({ top: 0, behavior: silent ? 'auto' : 'smooth' });
 }
 
-// Kunci scroll halaman di belakang modal (hanya buka kunci jika semua modal sudah tertutup)
+// Kunci scroll halaman di belakang modal
 function syncBodyScrollLock() {
     const catModal = document.getElementById('category-modal');
-    const finModal = document.getElementById('finish-modal');
-    const isAnyOpen =
-        (catModal && !catModal.classList.contains('hidden')) ||
-        (finModal && !finModal.classList.contains('hidden'));
+    const isAnyOpen = catModal && !catModal.classList.contains('hidden');
     document.body.classList.toggle('overflow-hidden', Boolean(isAnyOpen));
 }
 
-// Buka Modal Daftar Kartu pada Halaman 3
-function openCategoryModal(category, preserveScroll = false) {
+// Buka Modal Visualisasi Desain Kartu pada Halaman 3 (Tanpa Teks Pertanyaan)
+function openCategoryModal(category) {
     const validCat = ['all', 'umum', 'khusus', 'visual'].includes(category) ? category : 'all';
-    if (!preserveScroll && typeof playSfx === 'function') playSfx('click');
+    if (typeof playSfx === 'function') playSfx('click');
 
     const modal = document.getElementById('category-modal');
     const titleEl = document.getElementById('modal-category-title');
@@ -186,50 +168,62 @@ function openCategoryModal(category, preserveScroll = false) {
 
     if (!modal || !titleEl || !bodyEl || !playBtn) return;
 
-    const prevScrollTop = preserveScroll ? bodyEl.scrollTop : 0;
-
     const titles = {
-        'all': 'Semua Isi Kartu (Total 46 Kartu)',
-        'umum': 'Pertanyaan Umum (18 Kartu)',
-        'khusus': 'Pertanyaan Khusus (18 Kartu)',
-        'visual': 'Visual Card (10 Kartu)'
+        all: 'Visualisasi Seluruh Desain Kartu (46 Kartu)',
+        umum: 'Visualisasi Kartu Pertanyaan Umum (18 Kartu)',
+        khusus: 'Visualisasi Kartu Pertanyaan Khusus (18 Kartu)',
+        visual: 'Visualisasi Visual Card & Action Card (10 Kartu)'
     };
-    titleEl.textContent = titles[validCat] || 'Isi Kartu';
+    titleEl.textContent = titles[validCat] || 'Visualisasi Desain Kartu';
 
-    const cards = buildAllCards(validCat);
-    bodyEl.innerHTML = cards.map(c => {
-        const safeLabel = typeof escapeXml === 'function' ? escapeXml(c.categoryLabel) : c.categoryLabel;
-        const safeText = typeof escapeXml === 'function' ? escapeXml(c.text) : c.text;
-        const safeTitle = typeof escapeXml === 'function' ? escapeXml(c.title || 'Visual Card') : (c.title || 'Visual Card');
-        return `
-        <div class="p-4 rounded-2xl border-2 bg-white shadow-sm flex flex-col justify-between gap-2" style="border-color:${c.colorBorder}">
-            <div class="flex items-center justify-between">
-                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold" style="background:${c.colorBg}">${safeLabel}</span>
-                <span class="font-hand text-lg text-[#D85A88]">${c.id}</span>
-            </div>
-            ${c.category === 'visual' ? `
-                <div class="relative group my-1">
-                    <img src="${c.image}" alt="${safeTitle}" data-fallback-title="${safeTitle}" class="modal-visual-img w-full h-36 object-cover rounded-xl border border-pink-200">
-                    <label class="mt-1 inline-block cursor-pointer text-xs bg-pink-50 hover:bg-pink-100 text-[#D85A88] font-bold px-3 py-1.5 sm:py-0.5 sm:px-2 rounded-md border border-pink-200 transition">
-                        📷 Ganti Foto
-                        <input type="file" accept="image/*" class="hidden" onchange="uploadModalPhoto(event, ${c.visualIndex}, '${validCat}')">
-                    </label>
+    const items = typeof getCardsByCategory === 'function' ? getCardsByCategory(validCat) : [];
+
+    bodyEl.innerHTML = items
+        .map(item => {
+            const safeTitle = typeof escapeXml === 'function' ? escapeXml(item.title) : item.title;
+            const safeSubtitle = typeof escapeXml === 'function' ? escapeXml(item.subtitle) : item.subtitle;
+            const safeDesc = typeof escapeXml === 'function' ? escapeXml(item.description) : item.description;
+            const safeCount = typeof escapeXml === 'function' ? escapeXml(item.countLabel) : item.countLabel;
+            const frontSvg = typeof generateCardSVG === 'function' ? generateCardSVG(item.svgType) : '';
+            const backSvg = typeof generateCardSVG === 'function' ? generateCardSVG('card-back') : '';
+
+            return `
+            <div class="p-4 rounded-2xl border-2 bg-white shadow-sm flex flex-col justify-between gap-3" style="border-color:${item.borderColor}">
+                <div class="flex items-center justify-between gap-2">
+                    <span class="px-3 py-0.5 rounded-full text-xs font-bold" style="background:${item.badgeBg}; color:${item.badgeText}">
+                        ${safeCount}
+                    </span>
+                    <span class="text-xs font-semibold text-[#8E6D94]">${safeSubtitle}</span>
                 </div>
-            ` : ''}
-            <p class="text-sm font-medium text-[#5A3E5C]">${safeText}</p>
-        </div>
-        `;
-    }).join('');
 
-    // Pasang fallback gambar secara aman untuk seluruh kartu visual di dalam modal
-    if (typeof getFallbackSvg === 'function') {
-        bodyEl.querySelectorAll('.modal-visual-img').forEach(img => {
-            img.onerror = function () {
-                this.onerror = null;
-                this.src = getFallbackSvg(this.getAttribute('data-fallback-title') || 'Visual Card');
-            };
-        });
-    }
+                <!-- Pratinjau Desain Kartu (Depan & Sampul Belakang Berdampingan) -->
+                <div class="relative flex items-center justify-center py-3 bg-[#FFF8FA] rounded-xl border border-pink-100 overflow-hidden">
+                    ${
+                        item.svgType !== 'card-back'
+                            ? `
+                        <div class="w-24 h-36 sm:w-28 sm:h-40 rounded-lg shadow-md transform -rotate-6 translate-x-2 opacity-90">
+                            ${backSvg}
+                        </div>
+                        <div class="w-28 h-40 sm:w-32 sm:h-48 rounded-lg shadow-lg transform rotate-3 -translate-x-2 z-10">
+                            ${frontSvg}
+                        </div>
+                    `
+                            : `
+                        <div class="w-32 h-48 rounded-lg shadow-lg">
+                            ${frontSvg}
+                        </div>
+                    `
+                    }
+                </div>
+
+                <div>
+                    <h4 class="font-hand text-xl sm:text-2xl text-[#D85A88] leading-tight">${safeTitle}</h4>
+                    <p class="text-xs sm:text-sm font-medium text-[#5A3E5C] mt-1 leading-relaxed">${safeDesc}</p>
+                </div>
+            </div>
+            `;
+        })
+        .join('');
 
     playBtn.onclick = () => {
         closeCategoryModal();
@@ -237,52 +231,16 @@ function openCategoryModal(category, preserveScroll = false) {
         if (filterEl) {
             filterEl.value = validCat;
         }
-        shuffleAndDealUno();
+        if (typeof shuffleAndDealUno === 'function') {
+            shuffleAndDealUno();
+        }
         goToPage(5);
     };
 
     modal.classList.remove('hidden');
     modal.classList.add('flex');
     syncBodyScrollLock();
-
-    if (preserveScroll) {
-        bodyEl.scrollTop = prevScrollTop;
-    } else {
-        bodyEl.scrollTop = 0;
-    }
-}
-
-// Upload Foto dari dalam Modal Preview (dengan kompresi & sinkronisasi ke meja permainan)
-function uploadModalPhoto(event, visualIndex, currentCategory) {
-    const inputEl = event && event.target ? event.target : null;
-    const file = inputEl && inputEl.files ? inputEl.files[0] : null;
-    if (!file) return;
-
-    const handleImageReady = (dataUrl) => {
-        if (typeof saveCustomImage === 'function') {
-            saveCustomImage(visualIndex, dataUrl);
-        }
-        if (typeof syncVisualCardImage === 'function') {
-            syncVisualCardImage(visualIndex, dataUrl);
-        }
-        if (typeof renderUnoTable === 'function') {
-            renderUnoTable(false);
-        }
-        playSfx('click');
-        openCategoryModal(currentCategory, true);
-    };
-
-    if (typeof compressImageFile === 'function') {
-        compressImageFile(file)
-            .then(handleImageReady)
-            .catch(() => {
-                if (inputEl) inputEl.value = '';
-            });
-    } else {
-        const reader = new FileReader();
-        reader.onload = (e) => handleImageReady(e.target.result);
-        reader.readAsDataURL(file);
-    }
+    bodyEl.scrollTop = 0;
 }
 
 // Tutup Modal Daftar Kartu
@@ -294,66 +252,52 @@ function closeCategoryModal() {
     syncBodyScrollLock();
 }
 
-// Modal Selesai Permainan & Konfeti
-function openFinishModal() {
-    playSfx('fanfare');
-    triggerHeartConfetti();
+// Render Ilustrasi 4 Kartu Bertumpuk di Halaman 3 dengan SVG Asli
+function initPage3StackedCards() {
+    if (typeof generateCardSVG !== 'function') return;
+    const slotUmum = document.getElementById('stack-slot-umum');
+    const slotKhusus = document.getElementById('stack-slot-khusus');
+    const slotVisual = document.getElementById('stack-slot-visual');
+    const slotBack = document.getElementById('stack-slot-back');
 
-    const finishModal = document.getElementById('finish-modal');
-    if (finishModal) {
-        finishModal.classList.remove('hidden');
-        finishModal.classList.add('flex');
-        syncBodyScrollLock();
-    }
-}
-
-function closeFinishModal() {
-    const finishModal = document.getElementById('finish-modal');
-    if (finishModal) {
-        finishModal.classList.add('hidden');
-        finishModal.classList.remove('flex');
-        syncBodyScrollLock();
-    }
-}
-
-// Konfeti Hati & Pastel
-function triggerHeartConfetti() {
-    if (typeof confetti === 'function') {
-        const count = 120;
-        const defaults = {
-            origin: { y: 0.7 },
-            colors: ['#F48FB1', '#FFD6E4', '#CE93D8', '#BA68C8', '#FFF8FA']
-        };
-
-        confetti({
-            ...defaults,
-            particleCount: Math.floor(count * 0.6),
-            spread: 60,
-        });
-        confetti({
-            ...defaults,
-            particleCount: Math.floor(count * 0.4),
-            spread: 100,
-            decay: 0.91,
-            scalar: 1.2
-        });
-    }
+    if (slotUmum) slotUmum.innerHTML = generateCardSVG('umum-front');
+    if (slotKhusus) slotKhusus.innerHTML = generateCardSVG('khusus-front');
+    if (slotVisual) slotVisual.innerHTML = generateCardSVG('visual-pasangan');
+    if (slotBack) slotBack.innerHTML = generateCardSVG('card-back');
 }
 
 // Inisialisasi Saat Halaman Dimuat
 document.addEventListener('DOMContentLoaded', () => {
     loadSoundPreference();
+    initPage3StackedCards();
 
     // Render daftar instruksi di Halaman 4
     const instList = document.getElementById('instruction-list');
     if (instList && Array.isArray(DAFTAR_INSTRUKSI)) {
         instList.innerHTML = DAFTAR_INSTRUKSI.map(item => {
+            if (item && typeof item === 'object' && Array.isArray(item.points)) {
+                const safeStep = typeof escapeXml === 'function' ? escapeXml(item.step) : item.step;
+                const pointsHtml = item.points
+                    .map(pt => {
+                        const safePt = typeof escapeXml === 'function' ? escapeXml(pt) : pt;
+                        return `<li class="flex items-start gap-2"><span class="text-[#E06D94] font-bold leading-snug">•</span><span>${safePt}</span></li>`;
+                    })
+                    .join('');
+                return `
+                    <div class="bg-white/80 border border-pink-200 rounded-2xl p-3.5 sm:p-4 shadow-xs">
+                        <h4 class="font-hand text-xl sm:text-2xl text-[#D85A88] tracking-wide mb-1.5">${safeStep}</h4>
+                        <ul class="space-y-1 text-xs sm:text-base text-[#5A3E5C] leading-relaxed font-medium">
+                            ${pointsHtml}
+                        </ul>
+                    </div>
+                `;
+            }
             const safeItem = typeof escapeXml === 'function' ? escapeXml(item) : item;
             return `<li>${safeItem}</li>`;
         }).join('');
     }
 
-    // Pulihkan sesi permainan jika halaman di-refresh, atau kocok baru jika sesi belum ada
+    // Pulihkan state showcase atau mulai dari semua kartu
     let restored = false;
     if (typeof restoreGameState === 'function') {
         restored = restoreGameState();
@@ -373,24 +317,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Tutup modal jika klik di luar kotak
-    ['category-modal', 'finish-modal'].forEach(id => {
-        const modal = document.getElementById(id);
-        if (modal) {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('flex');
-                    syncBodyScrollLock();
-                }
-            });
-        }
-    });
+    const modal = document.getElementById('category-modal');
+    if (modal) {
+        modal.addEventListener('click', e => {
+            if (e.target === modal) {
+                closeCategoryModal();
+            }
+        });
+    }
 
-    // Tutup modal dengan tombol ESC
-    document.addEventListener('keydown', (e) => {
+    // Navigasi keyboard (ESC untuk tutup modal, Panah Kiri/Kanan di Halaman 5)
+    document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
             closeCategoryModal();
-            closeFinishModal();
+        } else if (document.body.dataset.page === '5') {
+            if (e.key === 'ArrowRight' && typeof stepShowcaseCard === 'function') {
+                stepShowcaseCard(1);
+            } else if (e.key === 'ArrowLeft' && typeof stepShowcaseCard === 'function') {
+                stepShowcaseCard(-1);
+            }
         }
     });
 });

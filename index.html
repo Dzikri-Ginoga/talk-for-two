@@ -37,7 +37,7 @@
             <button onclick="goToPage(2)" id="nav-btn-2" class="nav-btn shrink-0 min-h-[36px] sm:min-h-0 px-3 py-1 rounded-full transition hover:bg-pink-100 text-[#5A3E5C]">2. Menu</button>
             <button onclick="goToPage(3)" id="nav-btn-3" class="nav-btn shrink-0 min-h-[36px] sm:min-h-0 px-3 py-1 rounded-full transition hover:bg-pink-100 text-[#5A3E5C]">3. Isi Kartu</button>
             <button onclick="goToPage(4)" id="nav-btn-4" class="nav-btn shrink-0 min-h-[36px] sm:min-h-0 px-3 py-1 rounded-full transition hover:bg-pink-100 text-[#5A3E5C]">4. Instruksi</button>
-            <button onclick="goToPage(5)" id="nav-btn-5" class="nav-btn shrink-0 min-h-[36px] sm:min-h-0 px-3 py-1 rounded-full transition hover:bg-pink-100 text-[#5A3E5C]">5. Let's Play</button>
+            <button onclick="goToPage(5)" id="nav-btn-5" class="nav-btn shrink-0 min-h-[36px] sm:min-h-0 px-3 py-1 rounded-full transition hover:bg-pink-100 text-[#5A3E5C]">5. Visual Kartu</button>
         </nav>
     </header>
 
@@ -56,7 +56,7 @@
 
             <!-- Tombol Bulat Pink -->
             <div class="relative group flex flex-col items-center">
-                <button onclick="goToPage(2)" aria-label="Mulai Permainan" class="play-btn-circle w-32 h-32 sm:w-44 sm:h-44 rounded-full flex items-center justify-center focus:outline-none">
+                <button onclick="goToPage(2)" aria-label="Mulai" class="play-btn-circle w-32 h-32 sm:w-44 sm:h-44 rounded-full flex items-center justify-center focus:outline-none">
                     <svg class="w-14 h-14 sm:w-20 sm:h-20 text-white ml-2.5 drop-shadow" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M8 5.14v14l11-7-11-7z"/>
                     </svg>
@@ -80,7 +80,7 @@
                     ISI KARTU
                 </span>
                 <span class="text-xs sm:text-sm text-[#8E6D94] mt-1.5 font-medium">
-                    Lihat 46 kartu (Pertanyaan Umum, Khusus & Visual Card)
+                    Lihat visualisasi 46 kartu (Pertanyaan Umum, Khusus & Visual Card)
                 </span>
             </button>
 
@@ -90,7 +90,7 @@
                     INSTRUKSI
                 </span>
                 <span class="text-xs sm:text-sm text-[#8E6D94] mt-1.5 font-medium">
-                    Cara bermain TALK for Two
+                    Panduan & mengenal tipe kartu TALK for Two
                 </span>
             </button>
 
@@ -100,7 +100,7 @@
                     ← Kembali
                 </button>
                 <button onclick="goToPage(5)" class="min-h-[44px] sm:min-h-0 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-[#F48FB1] text-white font-semibold text-sm shadow-md hover:bg-[#E06D94] transition">
-                    Langsung Main (Now LETS PLAY) →
+                    Lihat Visualisasi Kartu →
                 </button>
             </div>
         </div>
@@ -111,69 +111,68 @@
     <!-- ================================================================= -->
     <section id="page-3" class="page-section flex-1 flex-col px-4 md:px-14 py-4 sm:py-6 relative">
         <!-- Judul Kiri Atas: ISI KARTU -->
-        <div class="mb-4 sm:mb-6">
-            <div class="header-badge inline-block px-6 py-2 sm:px-8 sm:py-2.5 font-hand text-xl sm:text-3xl tracking-wider">
+        <div class="mb-2 sm:mb-6">
+            <div class="header-badge inline-block px-5 py-1.5 sm:px-8 sm:py-2.5 font-hand text-xl sm:text-3xl tracking-wider">
                 ISI KARTU
             </div>
         </div>
 
         <!-- Konten 2 Kolom -->
-        <div class="max-w-5xl w-full mx-auto my-auto grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12 items-center">
+        <div class="max-w-5xl w-full mx-auto my-auto grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-12 items-center">
             
-            <!-- Kolom Kiri: Ilustrasi 4 Kartu Bertumpuk -->
+            <!-- Kolom Kiri: Ilustrasi 4 Kartu Bertumpuk (Diisi SVG Asli lewat JS) -->
             <div class="flex flex-col items-center justify-center">
-                <div class="card-group relative w-56 h-60 sm:w-72 sm:h-80 flex items-center justify-center cursor-pointer" onclick="openCategoryModal('all')">
-                    <!-- Kartu 1 (Kiri) -->
-                    <div class="stacked-card sc-1 absolute w-32 h-44 sm:w-40 sm:h-52 transform -translate-x-8 -translate-y-2 -rotate-6 bg-[#FFF9FB] flex flex-col items-center justify-center p-3">
-                        <span class="text-xs font-bold text-pink-400">UMUM</span>
-                        <span class="font-hand text-2xl sm:text-3xl text-pink-400 mt-2">?</span>
-                    </div>
-                    <!-- Kartu 2 (Atas Tengah) -->
-                    <div class="stacked-card sc-2 absolute w-32 h-44 sm:w-40 sm:h-52 transform translate-x-2 -translate-y-8 rotate-3 bg-[#F8EFFB] flex flex-col items-center justify-center p-3">
-                        <span class="text-xs font-bold text-purple-400">KHUSUS</span>
-                        <span class="font-hand text-2xl sm:text-3xl text-purple-400 mt-2">♥</span>
-                    </div>
-                    <!-- Kartu 3 (Kanan) -->
-                    <div class="stacked-card sc-3 absolute w-32 h-44 sm:w-40 sm:h-52 transform translate-x-10 translate-y-2 rotate-6 bg-[#FFF9FB] flex flex-col items-center justify-center p-3">
-                        <span class="text-xs font-bold text-pink-400">VISUAL</span>
-                        <span class="font-hand text-2xl sm:text-3xl text-pink-400 mt-2">★</span>
-                    </div>
-                    <!-- Kartu 4 (Depan Bawah) -->
-                    <div class="stacked-card sc-4 absolute w-32 h-44 sm:w-40 sm:h-52 transform -translate-x-1 translate-y-6 -rotate-2 bg-white flex flex-col items-center justify-center p-3 z-10">
-                        <img src="asset/logo-beruang.svg" alt="Logo Beruang" class="w-14 h-11 sm:w-16 sm:h-12 object-contain mb-1">
-                        <span class="font-hand text-xl sm:text-2xl text-[#E06D94] text-center leading-tight">TALK for Two</span>
-                        <span class="text-[10px] sm:text-xs text-purple-400 mt-1">Klik untuk lihat</span>
-                    </div>
+                <div class="card-group relative w-48 h-48 sm:w-72 sm:h-80 flex items-center justify-center cursor-pointer" onclick="openCategoryModal('all')" role="button" tabindex="0" aria-label="Lihat semua visualisasi kartu">
+                    <!-- Kartu 1 (Kiri - Pertanyaan Umum Pink Bunga Biru) -->
+                    <div id="stack-slot-umum" class="stacked-card sc-1 absolute w-24 h-36 sm:w-40 sm:h-60 transform -translate-x-8 -translate-y-1 -rotate-12 overflow-hidden"></div>
+                    <!-- Kartu 2 (Atas Tengah - Pertanyaan Khusus Biru Bunga Pink) -->
+                    <div id="stack-slot-khusus" class="stacked-card sc-2 absolute w-24 h-36 sm:w-40 sm:h-60 transform translate-x-2 -translate-y-5 rotate-3 overflow-hidden"></div>
+                    <!-- Kartu 3 (Kanan - Visual Card) -->
+                    <div id="stack-slot-visual" class="stacked-card sc-3 absolute w-24 h-36 sm:w-40 sm:h-60 transform translate-x-10 translate-y-1 rotate-12 overflow-hidden"></div>
+                    <!-- Kartu 4 (Depan Bawah - Sampul Belakang Holografik Talk For Two) -->
+                    <div id="stack-slot-back" class="stacked-card sc-4 absolute w-24 h-36 sm:w-40 sm:h-60 transform -translate-x-1 translate-y-4 -rotate-2 overflow-hidden z-10"></div>
                 </div>
 
-                <p class="font-hand text-2xl sm:text-4xl text-[#5A3E5C] mt-2 sm:mt-4 tracking-wide">
+                <p class="font-hand text-xl sm:text-4xl text-[#5A3E5C] mt-1.5 sm:mt-5 tracking-wide">
                     Total 46 Kartu
                 </p>
+                <span class="text-[11px] sm:text-xs text-[#8E6D94] font-medium">
+                    (Ketuk tumpukan kartu atau pilih kategori di bawah)
+                </span>
             </div>
 
             <!-- Kolom Kanan: 3 Kotak Kategori Kartu -->
-            <div class="flex flex-col gap-3 sm:gap-5">
-                <button onclick="openCategoryModal('umum')" class="sketch-box-lilac w-full py-4 sm:py-5 px-5 sm:px-6 flex flex-col items-center justify-center text-center">
-                    <span class="font-hand text-2xl sm:text-3xl text-[#E06D94]">Pertanyaan Umum</span>
-                    <span class="font-hand text-lg sm:text-xl text-[#7B587E] mt-0.5">18 kartu</span>
+            <div class="flex flex-col gap-2 sm:gap-5">
+                <button onclick="openCategoryModal('umum')" class="sketch-box-lilac w-full py-2.5 sm:py-5 px-4 sm:px-6 flex items-center justify-between gap-3 text-left">
+                    <div>
+                        <span class="block font-hand text-xl sm:text-3xl text-[#E06D94] leading-tight">Pertanyaan Umum</span>
+                        <span class="block text-[11px] sm:text-sm text-[#7B587E] font-medium">Kartu Pink Pastel • Bunga Biru</span>
+                    </div>
+                    <span class="shrink-0 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#FFE0EC] text-[#C94A7C] font-hand text-base sm:text-xl">18 kartu</span>
                 </button>
 
-                <button onclick="openCategoryModal('khusus')" class="sketch-box-lilac w-full py-4 sm:py-5 px-5 sm:px-6 flex flex-col items-center justify-center text-center">
-                    <span class="font-hand text-2xl sm:text-3xl text-[#E06D94]">Pertanyaan Khusus</span>
-                    <span class="font-hand text-lg sm:text-xl text-[#7B587E] mt-0.5">18 kartu</span>
+                <button onclick="openCategoryModal('khusus')" class="sketch-box-lilac w-full py-2.5 sm:py-5 px-4 sm:px-6 flex items-center justify-between gap-3 text-left">
+                    <div>
+                        <span class="block font-hand text-xl sm:text-3xl text-[#3A6B9C] leading-tight">Pertanyaan Khusus</span>
+                        <span class="block text-[11px] sm:text-sm text-[#7B587E] font-medium">Kartu Biru Langit • Bunga Pink</span>
+                    </div>
+                    <span class="shrink-0 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#DCEBFA] text-[#3A6B9C] font-hand text-base sm:text-xl">18 kartu</span>
                 </button>
 
-                <button onclick="openCategoryModal('visual')" class="sketch-box-lilac w-full py-4 sm:py-5 px-5 sm:px-6 flex flex-col items-center justify-center text-center">
-                    <span class="font-hand text-2xl sm:text-3xl text-[#E06D94]">Visual Card</span>
-                    <span class="font-hand text-lg sm:text-xl text-[#7B587E] mt-0.5">10 kartu</span>
+                <button onclick="openCategoryModal('visual')" class="sketch-box-lilac w-full py-2.5 sm:py-5 px-4 sm:px-6 flex items-center justify-between gap-3 text-left">
+                    <div>
+                        <span class="block font-hand text-xl sm:text-3xl text-[#D85A88] leading-tight">Visual Card &amp; Action</span>
+                        <span class="block text-[11px] sm:text-sm text-[#7B587E] font-medium">5 Tema Ilustrasi + PASS &amp; Discuss</span>
+                    </div>
+                    <span class="shrink-0 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#FCE4EC] text-[#D85A88] font-hand text-base sm:text-xl">10 kartu</span>
                 </button>
 
-                <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <div class="flex flex-wrap items-center justify-center gap-2.5 pt-1 sm:pt-2">
                     <button onclick="goToPage(2)" class="min-h-[44px] sm:min-h-0 px-4 py-2 rounded-full bg-white border-2 border-pink-300 text-[#D85A88] font-semibold text-sm hover:bg-pink-50 transition">
                         ← Kembali ke Menu
                     </button>
                     <button onclick="goToPage(5)" class="min-h-[44px] sm:min-h-0 px-5 py-2 rounded-full bg-[#F48FB1] text-white font-semibold text-sm shadow hover:bg-[#E06D94] transition">
-                        Main Sekarang →
+                        Galeri Visual Kartu →
                     </button>
                 </div>
             </div>
@@ -191,21 +190,26 @@
         </div>
 
         <div class="max-w-3xl w-full mx-auto my-auto">
-            <div class="sketch-box-static p-5 sm:p-10 bg-[#F4ECFA]/95">
-                <h3 class="font-hand text-2xl sm:text-3xl text-[#D85A88] mb-3 sm:mb-4 text-center">
-                    Panduan Bermain TALK for Two
-                </h3>
+            <div class="sketch-box-static p-4 sm:p-8 bg-[#F4ECFA]/95">
+                <div class="text-center mb-4 sm:mb-6">
+                    <h3 class="font-sketch text-4xl sm:text-5xl font-bold text-[#D85A88] leading-none tracking-wide">
+                        HOW TO PLAY
+                    </h3>
+                    <p class="font-hand text-xl sm:text-2xl text-[#7B587E] mt-1">
+                        Talk for Two
+                    </p>
+                </div>
                 
-                <ol id="instruction-list" class="space-y-2 sm:space-y-3 text-sm sm:text-lg text-[#5A3E5C] list-decimal list-inside leading-relaxed font-medium">
+                <div id="instruction-list" class="grid grid-cols-1 gap-3 sm:gap-3.5">
                     <!-- Diisi otomatis dari variabel DAFTAR_INSTRUKSI di js/data.js -->
-                </ol>
+                </div>
 
-                <div class="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+                <div class="mt-5 sm:mt-7 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
                     <button onclick="goToPage(2)" class="min-h-[44px] sm:min-h-0 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-white border-2 border-pink-300 text-[#D85A88] font-semibold text-sm hover:bg-pink-50 transition">
                         ← Kembali ke Menu
                     </button>
                     <button onclick="goToPage(5)" class="min-h-[44px] sm:min-h-0 px-6 py-2 sm:px-8 sm:py-2.5 rounded-full bg-gradient-to-r from-[#F48FB1] to-[#CE93D8] text-white font-hand text-xl sm:text-2xl tracking-wide shadow-md hover:opacity-95 transition">
-                        Now LETS PLAY! ▶
+                        Lihat Visual Kartu ▶
                     </button>
                 </div>
             </div>
@@ -213,103 +217,109 @@
     </section>
 
     <!-- ================================================================= -->
-    <!-- HALAMAN 5: Now LETS PLAY (Arena Permainan Pas di Layar HP)         -->
+    <!-- HALAMAN 5: GALERI VISUALISASI SETIAP TIPE KARTU (Pas 1 Layar HP)   -->
     <!-- ================================================================= -->
-    <section id="page-5" class="page-section flex-1 flex-col px-2 sm:px-6 md:px-12 py-2 sm:py-4 relative">
-        <!-- Baris Judul & Kontrol Permainan -->
-        <div class="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2 mb-1.5 sm:mb-4 px-1 sm:px-2">
-            <!-- Di HP judul 1 baris agar hemat tinggi layar -->
+    <section id="page-5" class="page-section flex-1 flex-col px-2.5 sm:px-6 md:px-12 py-2 sm:py-4 relative">
+        <!-- Baris Judul & Kontrol Filter -->
+        <div class="max-w-5xl w-full mx-auto flex flex-wrap items-center justify-between gap-2 mb-2 sm:mb-3 px-1">
             <div class="leading-none flex items-baseline gap-2 sm:block">
-                <span class="font-sketch text-xl sm:text-3xl text-[#E87A9E] font-bold sm:block sm:-mb-1">Now</span>
-                <span class="font-sketch text-2xl sm:text-5xl text-[#E87A9E] font-bold tracking-wide">LETS PLAY</span>
+                <span class="font-sketch text-xl sm:text-2xl text-[#E87A9E] font-bold sm:block sm:-mb-1">Card Design</span>
+                <span class="font-sketch text-2xl sm:text-4xl text-[#E87A9E] font-bold tracking-wide">VISUALISASI KARTU</span>
             </div>
 
-            <!-- Kontrol Filter, Privasi, Suara & Kocok Ulang -->
-            <div class="w-full sm:w-auto flex flex-wrap items-center gap-1.5 sm:gap-2 bg-white/95 p-1.5 sm:p-2 rounded-2xl border border-pink-200 shadow-sm">
-                <!-- text-base (16px) di HP mencegah iOS Safari auto-zoom saat dropdown disentuh -->
-                <select id="deck-filter" onchange="shuffleAndDealUno()" aria-label="Filter kategori kartu" class="flex-1 sm:flex-none min-w-0 min-h-[40px] sm:min-h-0 px-2.5 py-1.5 rounded-xl bg-[#EFE5F7] text-[#5A3E5C] font-semibold text-base sm:text-xs border border-pink-300 focus:outline-none">
-                    <option value="all">Semua (46)</option>
-                    <option value="umum">Umum (18)</option>
-                    <option value="khusus">Khusus (18)</option>
-                    <option value="visual">Visual (10)</option>
+            <!-- Kontrol Filter, Balik Sisi & Suara (Muat 1 Baris di HP) -->
+            <div class="w-full sm:w-auto flex items-center gap-1.5 sm:gap-2 bg-white/95 p-1.5 sm:p-2 rounded-2xl border border-pink-200 shadow-sm">
+                <!-- text-base (16px) di HP mencegah iOS Safari auto-zoom -->
+                <select id="deck-filter" onchange="shuffleAndDealUno()" aria-label="Filter tipe kartu" class="flex-1 sm:flex-none min-w-0 min-h-[40px] sm:min-h-0 px-2.5 py-1.5 rounded-xl bg-[#EFE5F7] text-[#5A3E5C] font-semibold text-base sm:text-xs border border-pink-300 focus:outline-none">
+                    <option value="all">Semua (10 Desain)</option>
+                    <option value="umum">Umum (Pink)</option>
+                    <option value="khusus">Khusus (Biru)</option>
+                    <option value="visual">Visual &amp; Action</option>
+                    <option value="back">Sampul Kartu</option>
                 </select>
 
-                <button onclick="togglePrivacyMode()" id="privacy-toggle-btn" aria-pressed="false" class="shrink-0 min-h-[40px] sm:min-h-0 px-2.5 py-1.5 rounded-xl bg-white text-[#5A3E5C] border border-pink-300 font-semibold text-xs shadow-sm transition">
-                    👀 Privasi: OFF
+                <button onclick="toggleCardSide()" id="flip-side-btn" aria-pressed="false" class="shrink-0 min-h-[40px] sm:min-h-0 px-2.5 sm:px-3 py-1.5 rounded-xl bg-[#F48FB1] hover:bg-[#E06D94] text-white font-semibold text-xs shadow-sm transition">
+                    🔄 Balik Kartu
                 </button>
 
-                <button onclick="toggleSound()" id="sound-toggle-btn" aria-pressed="true" class="shrink-0 min-h-[40px] sm:min-h-0 px-2.5 py-1.5 rounded-xl bg-white text-[#5A3E5C] border border-pink-300 font-semibold text-xs shadow-sm transition">
-                    🔊 Suara: ON
-                </button>
-
-                <button onclick="shuffleAndDealUno()" aria-label="Kocok Ulang" class="shrink-0 min-h-[40px] sm:min-h-0 px-3 py-1.5 rounded-xl bg-[#F48FB1] hover:bg-[#E06D94] text-white font-semibold text-xs shadow-sm transition flex items-center gap-1">
-                    <span>🔀</span> Kocok<span class="hidden sm:inline"> Ulang</span>
+                <button onclick="toggleSound()" id="sound-toggle-btn" aria-pressed="true" aria-label="Pengaturan Suara" class="shrink-0 min-h-[40px] sm:min-h-0 px-2.5 py-1.5 rounded-xl bg-white text-[#5A3E5C] border border-pink-300 font-semibold text-xs shadow-sm transition">
+                    🔊<span class="hidden sm:inline"> Suara: ON</span>
                 </button>
             </div>
         </div>
 
-        <!-- Arena Permainan -->
-        <div class="max-w-5xl w-full mx-auto flex-1 flex flex-col justify-between gap-1.5 sm:gap-4 bg-white/80 border border-pink-200 rounded-2xl sm:rounded-3xl p-1.5 sm:p-5 shadow-sm">
+        <!-- Panggung Visualisasi Kartu -->
+        <div class="max-w-5xl w-full mx-auto flex-1 flex flex-col justify-between gap-1.5 sm:gap-4 bg-white/85 border border-pink-200 rounded-2xl sm:rounded-3xl p-2 sm:p-6 shadow-sm">
             
-            <!-- AREA TANGAN PEMAIN 1 -->
-            <div class="flex flex-col items-center w-full">
-                <div class="flex items-center gap-2 mb-1">
-                    <span id="badge-p1" class="px-3 py-0.5 rounded-full text-xs font-bold bg-[#F48FB1] text-white shadow-sm">
-                        Giliran Pemain 1
-                    </span>
-                    <span class="text-[10px] sm:text-xs text-[#8E6D94] font-medium hidden sm:inline">
-                        (Sentuh kartu untuk dibuka ke meja)
-                    </span>
-                </div>
-                <!-- Wadah Kartu Swipe Samping (Hemat Tempat di HP). sm:pt-6 memberi ruang efek angkat saat hover di desktop -->
-                <div id="player1-hand" class="flex overflow-x-auto overscroll-x-contain no-scrollbar items-center justify-start sm:justify-center gap-1.5 sm:gap-2.5 min-h-[130px] sm:min-h-[192px] md:min-h-[214px] py-1.5 sm:pt-6 px-2 w-full">
-                    <!-- Kartu Pemain 1 di-render lewat JS -->
-                </div>
-            </div>
-
-            <!-- AREA TENGAH MEJA: DRAW PILE & PLAY PILE (Berdampingan di HP) -->
-            <div class="my-0.5 sm:my-2 py-1.5 sm:py-3 px-2 sm:px-3 rounded-2xl bg-[#EFE5F7]/80 border-2 border-dashed border-[#F48FB1] flex flex-row items-center justify-center gap-2.5 sm:gap-8">
+            <!-- Area Tengah: Pratinjau Kartu Berpasangan (Depan & Belakang) + Deskripsi Desain -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-8 items-center my-auto">
                 
-                <!-- Tumpukan Deck -->
-                <div class="flex flex-col items-center shrink-0">
-                    <button onclick="drawCardFromDeck()" aria-label="Ambil kartu dari deck" class="uno-card bg-gradient-to-br from-[#F48FB1] via-[#E899DC] to-[#CE93D8] border-2 sm:border-4 border-white flex flex-col items-center justify-center p-1.5 sm:p-2 text-white shadow-md group">
-                        <div class="w-full h-full border border-white/60 rounded-lg flex flex-col items-center justify-center p-1 text-center">
-                            <span class="font-hand text-sm sm:text-lg tracking-wider leading-tight">TALK<br>for Two</span>
-                            <span class="mt-1 px-1.5 sm:px-2 py-0.5 rounded-full bg-white/25 text-[11px] font-bold">
-                                + Ambil
-                            </span>
+                <!-- Kolom Kiri: Panggung 2 Kartu Berdampingan (Persis Gaya PDF Referensi) -->
+                <div class="flex flex-col items-center justify-center">
+                    <div class="relative flex items-center justify-center py-0.5 sm:py-2 px-6 sm:px-4">
+                        <!-- Tombol Sebelumnya -->
+                        <button onclick="stepShowcaseCard(-1)" aria-label="Kartu Sebelumnya" class="absolute -left-1 sm:-left-6 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 border-2 border-pink-300 text-[#D85A88] font-bold shadow-md hover:bg-pink-50 flex items-center justify-center transition">
+                            ‹
+                        </button>
+
+                        <!-- Kartu Utama di Depan (Kiri) -->
+                        <div id="showcase-main-card" onclick="toggleCardSide()" title="Klik untuk membalik kartu" class="showcase-card-frame relative z-10 w-28 h-40 sm:w-52 sm:h-76 rounded-xl sm:rounded-2xl shadow-xl transform -translate-x-2 -rotate-2 cursor-pointer transition-transform duration-300">
+                            <!-- Diisi SVG oleh JS -->
                         </div>
-                    </button>
-                    <span class="mt-1 text-[11px] sm:text-xs font-bold text-[#6E4F70]">
-                        Sisa: <span id="deck-count" class="text-[#D85A88]">36</span>
+
+                        <!-- Kartu Pasangan di Belakang (Kanan - Sampul / Sisi Sebaliknya) -->
+                        <div id="showcase-twin-card" onclick="toggleCardSide()" title="Klik untuk membalik kartu" class="w-24 h-36 sm:w-48 sm:h-72 rounded-xl sm:rounded-2xl shadow-lg transform -ml-5 sm:-ml-10 translate-y-1.5 rotate-6 opacity-90 cursor-pointer transition-transform duration-300">
+                            <!-- Diisi SVG oleh JS -->
+                        </div>
+
+                        <!-- Tombol Berikutnya -->
+                        <button onclick="stepShowcaseCard(1)" aria-label="Kartu Berikutnya" class="absolute -right-1 sm:-right-6 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 border-2 border-pink-300 text-[#D85A88] font-bold shadow-md hover:bg-pink-50 flex items-center justify-center transition">
+                            ›
+                        </button>
+                    </div>
+                    <span class="mt-0.5 text-[10px] sm:text-xs text-[#8E6D94] font-medium">
+                        💡 Ketuk kartu untuk membalik sisi depan &amp; sampul
                     </span>
                 </div>
 
-                <!-- Kartu Terbuka di Tengah -->
-                <div class="flex flex-col items-center flex-1 min-w-0 max-w-sm">
-                    <div id="played-card-slot" class="w-full min-h-[120px] sm:min-h-[180px] rounded-xl sm:rounded-2xl bg-white border-2 sm:border-4 border-[#F48FB1] shadow-md p-2.5 sm:p-4 flex flex-col items-center justify-between text-center relative">
-                        <!-- Isi kartu yang dimainkan tampil di sini -->
+                <!-- Kolom Kanan: Info Detail Desain Kartu -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left bg-[#FFF8FA] border-2 border-pink-200 rounded-2xl p-2.5 sm:p-6 shadow-xs">
+                    <div class="w-full flex items-center justify-between gap-2 mb-0.5 sm:mb-2">
+                        <span id="showcase-card-badge" class="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold bg-[#FFE0EC] text-[#C94A7C]">
+                            18 Kartu
+                        </span>
+                        <span id="showcase-counter" class="font-hand text-base sm:text-lg text-[#D85A88]">
+                            1 / 10
+                        </span>
                     </div>
-                    <span id="turn-status-text" class="hidden sm:block mt-1 text-[11px] sm:text-xs font-semibold text-[#D85A88] text-center leading-tight">
-                        Pilih kartu dari tangan Pemain 1 untuk membuka obrolan!
-                    </span>
+
+                    <h3 id="showcase-card-title" class="font-hand text-xl sm:text-4xl text-[#D85A88] leading-tight">
+                        Kartu Pertanyaan Umum
+                    </h3>
+                    <p id="showcase-card-subtitle" class="text-[11px] sm:text-sm font-bold text-[#7B587E]">
+                        18 Kartu • Desain Pink Floral Biru
+                    </p>
+
+                    <p id="showcase-card-desc" class="text-xs sm:text-sm text-[#5A3E5C] leading-snug sm:leading-relaxed mt-1 sm:mt-3 font-medium line-clamp-2 sm:line-clamp-none">
+                        Kartu dengan bingkai motif marmer lembut, area tengah merah muda pastel, logo 2 beruang di bagian bawah, dan ilustrasi bunga biru di sudut kanan bawah.
+                    </p>
+
+                    <div class="mt-2 sm:mt-4 pt-1.5 sm:pt-3 border-t border-pink-100 w-full flex flex-wrap items-center justify-center md:justify-start gap-2">
+                        <button onclick="toggleCardSide()" class="min-h-[36px] sm:min-h-[40px] px-3.5 py-1 rounded-full bg-[#EFE5F7] border border-pink-300 text-[#5A3E5C] font-semibold text-xs hover:bg-pink-100 transition">
+                            🔄 Balik Sisi
+                        </button>
+                        <button onclick="openCategoryModal(document.getElementById('deck-filter').value)" class="min-h-[36px] sm:min-h-[40px] px-3.5 py-1 rounded-full bg-white border border-pink-300 text-[#D85A88] font-semibold text-xs hover:bg-pink-50 transition">
+                            🔍 Lihat Grid Semua
+                        </button>
+                    </div>
                 </div>
 
             </div>
 
-            <!-- AREA TANGAN PEMAIN 2 -->
-            <div class="flex flex-col items-center w-full">
-                <div class="flex items-center gap-2 mb-1">
-                    <span id="badge-p2" class="px-3 py-0.5 rounded-full text-xs font-bold bg-[#E8DAEF] text-[#5A3E5C]">
-                        Pemain 2
-                    </span>
-                    <span class="text-[10px] sm:text-xs text-[#8E6D94] font-medium hidden sm:inline">
-                        (Sentuh kartu untuk dibuka ke meja)
-                    </span>
-                </div>
-                <!-- Wadah Kartu Swipe Samping -->
-                <div id="player2-hand" class="flex overflow-x-auto overscroll-x-contain no-scrollbar items-center justify-start sm:justify-center gap-1.5 sm:gap-2.5 min-h-[130px] sm:min-h-[192px] md:min-h-[214px] py-1.5 sm:pt-6 px-2 w-full">
-                    <!-- Kartu Pemain 2 di-render lewat JS -->
+            <!-- Baris Bawah: Deretan Thumbnail Seluruh Tipe Kartu (Swipeable di HP) -->
+            <div class="w-full pt-1.5 sm:pt-2 border-t border-pink-100">
+                <div id="showcase-thumbs" class="flex overflow-x-auto overscroll-x-contain no-scrollbar items-center justify-start md:justify-center gap-1.5 sm:gap-3 py-1 px-1.5 sm:px-2 w-full">
+                    <!-- Thumbnail kartu dirender lewat JS -->
                 </div>
             </div>
 
@@ -317,58 +327,30 @@
     </section>
 
     <!-- ================================================================= -->
-    <!-- LOGO BERUANG DI KANAN BAWAH (Skala kecil di HP agar tidak nabrak)  -->
+    <!-- LOGO BERUANG DI KANAN BAWAH (Hanya tampil di Halaman 1 pada HP)    -->
     <!-- ================================================================= -->
-    <!-- Logo dekoratif: tidak menangkap sentuhan, & di HP hanya tampil di halaman 1 (lihat style.css) -->
     <div id="brand-badge" aria-hidden="true" class="fixed bottom-3 right-3 z-30 pointer-events-none flex flex-col items-end scale-75 sm:scale-100 origin-bottom-right">
         <div class="bg-white border border-[#F48FB1] rounded-2xl p-1.5 shadow-sm flex flex-col items-center w-24">
-            <!-- Vektor Asli Logo 2 Beruang Berpelukan (Saturasi Terang) -->
-            <svg class="w-16 h-12 sm:w-20 sm:h-14" viewBox="0 0 300 222" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g transform="translate(3.5, 1.9)">
-                    <path d="M 294.4 184.8 C 293.6 188.2 291.5 190.6 288.1 191.9 C 276.9 196.3 270.9 191.2 265.1 186.3 C 264.6 185.8 264 185.4 263.5 185 C 257.2 179.9 244.9 150.4 244.7 150.1 L 243.7 147.6 L 244.6 174.5 C 244.6 175.5 244.6 176.5 244.6 177.4 L 245.6 179.3 C 247.2 182.4 250.2 189.5 247.7 196.1 C 245.9 201 241.5 204.7 234.5 207.1 C 234.8 206.8 235.2 206.5 235.5 206.3 L 234.5 207.1 L 232.9 207.1 C 232.9 207.1 232.9 207.1 232.8 207.2 C 232.5 207.5 232.1 207.8 231.8 208 C 225.9 213 217.9 214.2 205.5 215.8 C 198.8 216.6 192.7 216.2 187.8 215.4 L 181 214 C 180.4 213.9 179.9 213.8 179.4 213.7 C 179.3 213.7 179.1 213.6 179 213.6 C 178.8 213.6 178.7 213.5 178.5 213.5 L 176.1 213 C 175.1 212.9 174.1 212.7 173 212.6 C 170.1 212.3 166.8 212 162.7 210.7 C 156.6 208.9 145.3 197.5 144.3 196.5 L 141.3 196.9 L 133.2 191.3 L 147.3 131.6 L 165.4 108.2 L 153.8 87.7 C 153.8 87.7 153.7 87.7 153.7 87.7 L 153.7 87.7 C 152.9 86.4 152.3 85.2 151.6 83.9 L 151.6 83.9 L 151.6 83.9 C 149.1 78.6 147.6 73 146.8 68.5 L 146 69 L 133.2 32.4 L 140.3 15.6 L 141.3 16.2 C 141.3 15.9 141.3 15.6 141.3 15.5 C 144.7 6.5 152.9 -1.9 161.5 0.3 C 169.5 2.3 168.4 9.2 168.3 9.5 L 168.3 9.6 L 169.4 9.9 C 172.6 9.3 191.8 5.8 201.4 6.7 C 211.7 7.7 221.8 10.7 228.6 14.8 C 229.5 15.3 230.3 16 231.2 16.7 L 231.2 16.7 L 232.5 16.6 C 232.5 16.6 232.4 16.5 232.4 16.5 C 235.5 15.8 245.7 13.6 249 14.6 C 253.2 15.8 260.5 21.7 263 30.5 C 265.1 37.9 263.4 45.7 261.7 48.6 C 261.1 49.6 260.7 49.8 260.5 49.8 C 260.1 49.9 259.7 50 259.3 50.1 C 257 50.7 254.2 51.4 250.6 50.1 C 250.6 50.1 250.5 50 250.5 50 L 250.1 51.8 C 250.7 56 251.5 66.3 248.4 77.2 C 246.4 84.2 239.2 90.2 234 94.5 C 231.9 96.2 230.3 97.6 229.4 98.7 C 228.1 100.2 227.9 101.9 228.6 103.5 C 229.8 106 233.1 107.6 237.1 107.6 C 242.1 107.6 248.9 114.2 252.6 117.7 C 253.5 118.5 254.1 119.2 254.6 119.6 C 257.5 122.1 269.3 134.8 270.6 138.5 C 272 142.4 285.9 161 286.5 161.9 C 291.6 167.7 296.1 177.8 294.4 184.8 Z" fill="#E1A0C9"/>
-                    <path d="M 209.6 110.6 C 208.1 114.6 205.4 117.8 204.4 118.2 C 201.3 119.3 177.8 126.9 169.1 125.2 C 166.6 124.7 162.9 124.6 158.9 124.7 L 157.5 125.8 C 157.6 125.8 157.6 125.8 157.7 125.8 C 155.5 128.6 148.7 138.1 147.6 148.2 C 147.3 151.1 147 154 146.7 156.9 C 146.7 157.2 146.6 157.6 146.6 157.9 C 146.6 157.9 146.6 157.9 146.6 157.9 L 146.5 159.1 C 146.5 159.1 146.5 159.1 146.5 159.1 C 146.3 160.8 146.2 162.6 146 164.2 L 146 164.3 L 146 164.4 C 145.8 165.9 145.7 167.3 145.5 168.6 L 145.3 170.2 C 145.3 170.2 145.3 170.2 145.3 170.2 C 145.2 170.8 145.1 171.4 145 172 L 145 172.1 L 145 172.1 C 144.6 174.7 144.1 176.7 143.5 177.8 C 141.6 181.2 139.9 192.7 143.1 196.8 C 138.4 199.9 132.1 202.7 132.1 202.7 L 132 202.8 C 128 206.5 121.7 211.6 113 213.7 C 106.3 215.3 90.8 214.6 86 214.3 L 84.1 214.3 C 68.2 218.1 66.4 213.1 66.4 213 L 66.3 212.7 L 66.3 212.7 C 66.3 212.7 66.3 212.7 66.3 212.6 L 65.2 212.5 C 65.2 212.5 65.2 212.5 65.2 212.5 C 65.1 212.5 64.9 212.4 64.8 212.4 L 64.7 212.4 L 64.7 212.4 C 55.5 210.8 48.7 205.5 48.6 205.4 C 38.2 196.3 38.3 180.3 38.5 176.2 L 37.6 175 C 36.6 175.9 31.2 180.3 29.1 181.1 C 26.8 182 12.4 185.1 4.5 178.8 C -3.5 172.4 0.8 158.5 5.9 147.9 C 9.5 140.4 13.4 136.6 18.7 131.5 C 21.1 129.2 23.8 126.6 26.8 123.2 C 36.3 112.8 52.7 101.4 53.2 101 L 53.1 99.9 C 53.1 99.9 53 100 52.9 100 C 51.6 99.4 44.2 95.6 37.7 87.6 C 30.6 78.8 28.3 67.6 28.2 67.5 L 28.1 67.2 L 28 67.2 C 24.1 66.1 21.8 61 21.2 58.7 C 21 57.8 20.4 56.8 19.6 55.6 C 18.1 53.3 16 50 15.7 45.1 C 15.4 39.9 19.8 37.1 23.6 34.6 C 25.1 33.7 26.4 32.8 27.4 31.8 C 31.1 28.3 36.1 25.7 37.2 25.7 C 37.7 25.7 38.9 26 40.1 26.3 C 43 27.1 44.9 27.5 45.6 27 C 45.9 26.8 47 27.5 47.8 28.3 L 48.4 29.2 C 48.7 28.8 48.9 28.4 49.2 28.1 C 58.9 14.6 76.6 12.1 84.2 11.1 C 85 11 85.8 10.9 86.3 10.8 C 89.2 10.3 92.6 11.6 95.8 12.9 C 99.1 14.2 102.2 15.3 105 14.9 C 110.1 14.2 115 15.8 115.3 15.8 C 115.3 15.8 115.5 15.9 115.6 16 L 116 15.1 C 116 15.1 115.9 15.1 115.9 15.1 C 115.5 12.3 117.1 10.6 117.2 10.4 C 119.3 7.4 121.8 5.8 124.7 5.8 C 131.8 5.6 139.3 14.4 140.3 15.6 C 140.2 16.9 140 23.3 140.1 30.8 L 140.3 36.9 C 140.6 43.2 141.3 49.4 142.7 53.6 C 143.8 56.9 144.4 58.8 144.8 59.9 C 144.9 61 145.1 64.5 145.9 69 C 143.5 71.4 136.9 84.8 135.2 88.3 L 135.5 89.5 C 135.5 89.5 135.5 89.5 135.5 89.5 L 135.7 89.6 C 135.7 89.6 135.7 89.5 135.8 89.5 C 136.2 89.5 136.6 89.4 137 89.4 C 139 89.4 140.5 89.8 140.7 89.8 L 140.8 89.8 L 146.5 89.8 C 146.6 89.8 153.3 88.5 157.9 88.5 C 159.5 88.5 161.5 88.9 163.7 89.4 C 167.5 90.2 171.7 91.1 175 89.8 C 179.5 87.9 185.4 88.5 186.1 88.5 C 193.2 91.6 204.4 94.2 206.4 94.7 C 206.8 95.6 207.7 97.1 209.2 100 C 211.4 103.7 210.6 107.9 209.6 110.6 Z" fill="#282467"/>
-                </g>
-            </svg>
+            <img src="asset/logo-beruang.svg" alt="" class="w-16 h-12 sm:w-20 sm:h-14 object-contain">
             <span class="font-hand text-[10px] text-[#D85A88] leading-tight mt-0.5">Talk for Two</span>
         </div>
     </div>
 
     <!-- ================================================================= -->
-    <!-- MODAL PREVIEW DAFTAR KARTU                                        -->
+    <!-- MODAL PREVIEW GRID VISUALISASI KARTU                              -->
     <!-- ================================================================= -->
     <div id="category-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-3 sm:p-4 z-50">
-        <div class="bg-[#FFF8FA] border-2 sm:border-4 border-[#F48FB1] rounded-2xl sm:rounded-3xl max-w-2xl w-full max-h-[85vh] max-h-[85dvh] flex flex-col shadow-xl overflow-hidden">
+        <div class="bg-[#FFF8FA] border-2 sm:border-4 border-[#F48FB1] rounded-2xl sm:rounded-3xl max-w-3xl w-full max-h-[85vh] max-h-[85dvh] flex flex-col shadow-xl overflow-hidden">
             <div class="px-4 py-3 bg-[#EFE5F7] border-b-2 border-[#F48FB1] flex items-center justify-between gap-3">
-                <h3 id="modal-category-title" class="min-w-0 font-hand text-2xl sm:text-3xl leading-tight text-[#D85A88]">Daftar Isi Kartu</h3>
+                <h3 id="modal-category-title" class="min-w-0 font-hand text-2xl sm:text-3xl leading-tight text-[#D85A88]">Visualisasi Desain Kartu</h3>
                 <button onclick="closeCategoryModal()" aria-label="Tutup" class="shrink-0 w-11 h-11 sm:w-9 sm:h-9 rounded-full bg-white border border-pink-300 text-[#D85A88] font-bold hover:bg-pink-100 flex items-center justify-center">✕</button>
             </div>
-            <div id="modal-category-body" class="p-3 sm:p-4 overflow-y-auto overscroll-contain grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <!-- Daftar kartu dirender lewat JS -->
+            <div id="modal-category-body" class="p-3 sm:p-4 overflow-y-auto overscroll-contain grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <!-- Daftar visualisasi kartu dirender lewat JS -->
             </div>
             <div class="px-4 py-3 bg-white border-t border-pink-200 flex flex-wrap justify-end gap-2 sm:gap-3">
                 <button onclick="closeCategoryModal()" class="min-h-[44px] sm:min-h-0 px-4 py-1.5 rounded-full bg-pink-100 text-[#D85A88] font-semibold text-sm hover:bg-pink-200">Tutup</button>
-                <button id="modal-play-category-btn" class="min-h-[44px] sm:min-h-0 px-4 py-1.5 rounded-full bg-[#F48FB1] text-white font-semibold text-sm hover:bg-[#E06D94]">Mainkan Kategori Ini ▶</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ================================================================= -->
-    <!-- MODAL SELESAI PERMAINAN (FINISH)                                  -->
-    <!-- ================================================================= -->
-    <div id="finish-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-50">
-        <div class="bg-[#FFF8FA] border-4 border-[#F48FB1] rounded-3xl max-w-md w-full p-6 text-center shadow-2xl animate-flip flex flex-col items-center">
-            <span class="text-5xl mb-2">🎉</span>
-            <h3 class="font-hand text-3xl sm:text-4xl text-[#D85A88] mb-2">Sesi Selesai!</h3>
-            <p class="text-sm sm:text-base text-[#5A3E5C] leading-relaxed mb-6 font-medium">
-                Terima kasih sudah meluangkan waktu untuk saling mendengarkan dan terbuka hari ini. Setiap jawaban dan tawa kecil hari ini adalah memori manis berdua! 💕
-            </p>
-            <div class="flex flex-wrap items-center justify-center gap-3">
-                <button onclick="closeFinishModal(); shuffleAndDealUno();" class="min-h-[44px] px-6 py-2 rounded-full bg-[#F48FB1] text-white font-semibold text-sm shadow hover:bg-[#E06D94] transition">
-                    Main Lagi 🔀
-                </button>
-                <button onclick="closeFinishModal(); goToPage(2);" class="min-h-[44px] px-5 py-2 rounded-full bg-white border-2 border-pink-300 text-[#D85A88] font-semibold text-sm hover:bg-pink-50 transition">
-                    Ke Menu Utama
-                </button>
+                <button id="modal-play-category-btn" class="min-h-[44px] sm:min-h-0 px-4 py-1.5 rounded-full bg-[#F48FB1] text-white font-semibold text-sm hover:bg-[#E06D94]">Buka di Panggung Visual ▶</button>
             </div>
         </div>
     </div>
@@ -376,7 +358,6 @@
     <!-- ================================================================= -->
     <!-- SCRIPTS                                                           -->
     <!-- ================================================================= -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <script src="js/data.js"></script>
     <script src="js/game.js"></script>
     <script src="js/app.js"></script>

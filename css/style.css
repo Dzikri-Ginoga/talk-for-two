@@ -33,6 +33,8 @@ button,
 select,
 label,
 .uno-card,
+.thumb-card,
+.showcase-card-frame,
 .card-group {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
@@ -103,11 +105,16 @@ label,
 
 /* Ilustrasi 4 Kartu Bertumpuk di Halaman 3 */
 .stacked-card {
-    background: rgba(255, 255, 255, 0.88);
-    border: 3.5px solid var(--soft-pink);
-    border-radius: 18px;
-    box-shadow: 0 8px 20px rgba(224, 109, 148, 0.15);
+    background: #FFFFFF;
+    border: 2px solid rgba(244, 143, 177, 0.55);
+    border-radius: 14px;
+    box-shadow: 0 10px 22px rgba(90, 62, 92, 0.16);
     transition: transform 0.35s ease;
+}
+
+.showcase-card-frame:active,
+.thumb-card:active {
+    transform: scale(0.96);
 }
 
 /* Kartu UNO / Talk for Two di Halaman 5 */
