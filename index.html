@@ -65,7 +65,7 @@
                     </svg>
                 </button>
                 <span class="mt-4 sm:mt-5 font-hand text-lg sm:text-xl text-[#D86C90] bg-pink-50 px-4 py-1 rounded-full border border-pink-200 shadow-sm animate-bounce">
-                    ✨ Klik tombol untuk mulai ✨
+                    Klik tombol untuk mulai
                 </span>
             </div>
         </div>
@@ -93,7 +93,7 @@
                     INSTRUKSI
                 </span>
                 <span class="text-xs sm:text-sm text-[#8E6D94] mt-1.5 font-medium">
-                    Panduan & mengenal tipe kartu TALK for Two
+                    Panduan & mengenal tipe kartu Talk for Two
                 </span>
             </button>
 
@@ -149,7 +149,7 @@
                 <button onclick="openCategoryModal('khusus')" class="sketch-box-lilac w-full py-2.5 sm:py-5 px-4 sm:px-6 flex items-center justify-between gap-3 text-left">
                     <div>
                         <span class="block font-hand text-xl sm:text-3xl text-[#E06D94] leading-tight">Pertanyaan Khusus</span>
-                        <span class="block text-[11px] sm:text-sm text-[#7B587E] font-medium">Kartu Pink Pastel • Bunga Biru</span>
+                        <span class="block text-[11px] sm:text-sm text-[#7B587E] font-medium">Kartu Khusus</span>
                     </div>
                     <span class="shrink-0 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#FFE0EC] text-[#C94A7C] font-hand text-base sm:text-xl">18 kartu</span>
                 </button>
@@ -157,7 +157,7 @@
                 <button onclick="openCategoryModal('umum')" class="sketch-box-lilac w-full py-2.5 sm:py-5 px-4 sm:px-6 flex items-center justify-between gap-3 text-left">
                     <div>
                         <span class="block font-hand text-xl sm:text-3xl text-[#3A6B9C] leading-tight">Pertanyaan Umum</span>
-                        <span class="block text-[11px] sm:text-sm text-[#7B587E] font-medium">Kartu Biru Langit • Bunga Pink</span>
+                        <span class="block text-[11px] sm:text-sm text-[#7B587E] font-medium">Kartu Umum</span>
                     </div>
                     <span class="shrink-0 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#DCEBFA] text-[#3A6B9C] font-hand text-base sm:text-xl">18 kartu</span>
                 </button>
@@ -235,18 +235,18 @@
                 <!-- text-base (16px) di HP mencegah iOS Safari auto-zoom -->
                 <select id="deck-filter" onchange="shuffleAndDealUno()" aria-label="Filter tipe kartu" class="flex-1 sm:flex-none min-w-0 min-h-[40px] sm:min-h-0 px-2.5 py-1.5 rounded-xl bg-[#EFE5F7] text-[#5A3E5C] font-semibold text-base sm:text-xs border border-pink-300 focus:outline-none">
                     <option value="all">Semua (10 Desain)</option>
-                    <option value="khusus">Khusus (Pink)</option>
-                    <option value="umum">Umum (Biru)</option>
+                    <option value="khusus">Khusus </option>
+                    <option value="umum">Umum </option>
                     <option value="visual">Visual &amp; Action</option>
                     <option value="back">Sampul Kartu</option>
                 </select>
 
                 <button onclick="toggleCardSide()" id="flip-side-btn" aria-pressed="false" class="shrink-0 min-h-[40px] sm:min-h-0 px-2.5 sm:px-3 py-1.5 rounded-xl bg-[#F48FB1] hover:bg-[#E06D94] text-white font-semibold text-xs shadow-sm transition">
-                    🔄 Balik Kartu
+                    Balik Kartu
                 </button>
 
                 <button onclick="toggleSound()" id="sound-toggle-btn" aria-pressed="true" aria-label="Pengaturan Suara" class="shrink-0 min-h-[40px] sm:min-h-0 px-2.5 py-1.5 rounded-xl bg-white text-[#5A3E5C] border border-pink-300 font-semibold text-xs shadow-sm transition">
-                    🔊<span class="hidden sm:inline"> Suara: ON</span>
+                    Suara: ON
                 </button>
             </div>
         </div>
@@ -281,7 +281,7 @@
                         </button>
                     </div>
                     <span class="mt-0.5 text-[10px] sm:text-xs text-[#8E6D94] font-medium">
-                        💡 Ketuk kartu untuk membalik sisi depan &amp; sampul
+                        Ketuk kartu untuk membalik sisi depan &amp; sampul
                     </span>
                 </div>
 
@@ -297,22 +297,22 @@
                     </div>
 
                     <h3 id="showcase-card-title" class="font-hand text-xl sm:text-4xl text-[#D85A88] leading-tight">
-                        Kartu Pertanyaan Umum
+                        Kartu Pertanyaan Khusus
                     </h3>
                     <p id="showcase-card-subtitle" class="text-[11px] sm:text-sm font-bold text-[#7B587E]">
-                        18 Kartu • Desain Pink Floral Biru
+                        18 Kartu 
                     </p>
 
                     <p id="showcase-card-desc" class="text-xs sm:text-sm text-[#5A3E5C] leading-snug sm:leading-relaxed mt-1 sm:mt-3 font-medium line-clamp-2 sm:line-clamp-none">
-                        Kartu dengan bingkai motif marmer lembut, area tengah merah muda pastel, logo 2 beruang di bagian bawah, dan ilustrasi bunga biru di sudut kanan bawah.
+                        Mainkan kartu ini menggunakan visual card yang sudah tersedia
                     </p>
 
                     <div class="mt-2 sm:mt-4 pt-1.5 sm:pt-3 border-t border-pink-100 w-full flex flex-wrap items-center justify-center md:justify-start gap-2">
                         <button onclick="toggleCardSide()" class="min-h-[36px] sm:min-h-[40px] px-3.5 py-1 rounded-full bg-[#EFE5F7] border border-pink-300 text-[#5A3E5C] font-semibold text-xs hover:bg-pink-100 transition">
-                            🔄 Balik Sisi
+                            Balik Sisi
                         </button>
                         <button onclick="openCategoryModal(document.getElementById('deck-filter').value)" class="min-h-[36px] sm:min-h-[40px] px-3.5 py-1 rounded-full bg-white border border-pink-300 text-[#D85A88] font-semibold text-xs hover:bg-pink-50 transition">
-                            🔍 Lihat Grid Semua
+                            Lihat Grid Semua
                         </button>
                     </div>
                 </div>
@@ -346,7 +346,7 @@
         <div class="bg-[#FFF8FA] border-2 sm:border-4 border-[#F48FB1] rounded-2xl sm:rounded-3xl max-w-3xl w-full max-h-[85vh] max-h-[85dvh] flex flex-col shadow-xl overflow-hidden">
             <div class="px-4 py-3 bg-[#EFE5F7] border-b-2 border-[#F48FB1] flex items-center justify-between gap-3">
                 <h3 id="modal-category-title" class="min-w-0 font-hand text-2xl sm:text-3xl leading-tight text-[#D85A88]">Visualisasi Desain Kartu</h3>
-                <button onclick="closeCategoryModal()" aria-label="Tutup" class="shrink-0 w-11 h-11 sm:w-9 sm:h-9 rounded-full bg-white border border-pink-300 text-[#D85A88] font-bold hover:bg-pink-100 flex items-center justify-center">✕</button>
+                <button onclick="closeCategoryModal()" aria-label="Tutup" class="shrink-0 w-11 h-11 sm:w-9 sm:h-9 rounded-full bg-white border border-pink-300 text-[#D85A88] font-bold hover:bg-pink-100 flex items-center justify-center">X</button>
             </div>
             <div id="modal-category-body" class="p-3 sm:p-4 overflow-y-auto overscroll-contain grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <!-- Daftar visualisasi kartu dirender lewat JS -->

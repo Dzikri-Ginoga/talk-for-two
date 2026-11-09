@@ -29,8 +29,8 @@ function updateSoundButtonUI() {
     const btn = document.getElementById('sound-toggle-btn');
     if (!btn) return;
     btn.innerHTML = soundEnabled
-        ? '🔊<span class="hidden sm:inline"> Suara: ON</span>'
-        : '🔇<span class="hidden sm:inline"> Suara: OFF</span>';
+        ? 'Suara: ON'
+        : 'Suara: OFF';
     btn.setAttribute('aria-pressed', String(soundEnabled));
 }
 
@@ -170,8 +170,8 @@ function openCategoryModal(category) {
 
     const titles = {
         all: 'Visualisasi Seluruh Desain Kartu (50 Kartu)',
-        khusus: 'Visualisasi Kartu Pertanyaan Khusus (18 Kartu Pink)',
-        umum: 'Visualisasi Kartu Pertanyaan Umum (18 Kartu Biru)',
+        khusus: 'Visualisasi Kartu Pertanyaan Khusus (18 Kartu)',
+        umum: 'Visualisasi Kartu Pertanyaan Umum (18 Kartu)',
         visual: 'Visualisasi Visual Card & Action Card (14 Kartu)'
     };
     titleEl.textContent = titles[validCat] || 'Visualisasi Desain Kartu';

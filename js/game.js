@@ -165,7 +165,7 @@ function renderShowcaseView(animateFlip = false) {
     }
 
     if (flipBtn) {
-        flipBtn.textContent = isShowingBackSide ? '🔄 Sisi Depan' : '🔄 Balik Kartu';
+        flipBtn.textContent = isShowingBackSide ? 'Sisi Depan' : 'Balik Kartu';
         flipBtn.setAttribute('aria-pressed', String(isShowingBackSide));
     }
 
