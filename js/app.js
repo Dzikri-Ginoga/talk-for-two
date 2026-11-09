@@ -169,10 +169,10 @@ function openCategoryModal(category) {
     if (!modal || !titleEl || !bodyEl || !playBtn) return;
 
     const titles = {
-        all: 'Visualisasi Seluruh Desain Kartu (46 Kartu)',
-        umum: 'Visualisasi Kartu Pertanyaan Umum (18 Kartu)',
-        khusus: 'Visualisasi Kartu Pertanyaan Khusus (18 Kartu)',
-        visual: 'Visualisasi Visual Card & Action Card (10 Kartu)'
+        all: 'Visualisasi Seluruh Desain Kartu (50 Kartu)',
+        khusus: 'Visualisasi Kartu Pertanyaan Khusus (18 Kartu Pink)',
+        umum: 'Visualisasi Kartu Pertanyaan Umum (18 Kartu Biru)',
+        visual: 'Visualisasi Visual Card & Action Card (14 Kartu)'
     };
     titleEl.textContent = titles[validCat] || 'Visualisasi Desain Kartu';
 
@@ -255,13 +255,13 @@ function closeCategoryModal() {
 // Render Ilustrasi 4 Kartu Bertumpuk di Halaman 3 dengan SVG Asli
 function initPage3StackedCards() {
     if (typeof generateCardSVG !== 'function') return;
-    const slotUmum = document.getElementById('stack-slot-umum');
     const slotKhusus = document.getElementById('stack-slot-khusus');
+    const slotUmum = document.getElementById('stack-slot-umum');
     const slotVisual = document.getElementById('stack-slot-visual');
     const slotBack = document.getElementById('stack-slot-back');
 
-    if (slotUmum) slotUmum.innerHTML = generateCardSVG('umum-front');
     if (slotKhusus) slotKhusus.innerHTML = generateCardSVG('khusus-front');
+    if (slotUmum) slotUmum.innerHTML = generateCardSVG('umum-front');
     if (slotVisual) slotVisual.innerHTML = generateCardSVG('visual-pasangan');
     if (slotBack) slotBack.innerHTML = generateCardSVG('card-back');
 }

@@ -80,7 +80,7 @@
                     ISI KARTU
                 </span>
                 <span class="text-xs sm:text-sm text-[#8E6D94] mt-1.5 font-medium">
-                    Lihat visualisasi 46 kartu (Pertanyaan Umum, Khusus & Visual Card)
+                    Lihat visualisasi 50 kartu (Pertanyaan Khusus, Umum, Visual & Action)
                 </span>
             </button>
 
@@ -107,7 +107,7 @@
     </section>
 
     <!-- ================================================================= -->
-    <!-- HALAMAN 3: ISI KARTU - TOTAL 46 KARTU                             -->
+    <!-- HALAMAN 3: ISI KARTU - TOTAL 50 KARTU                             -->
     <!-- ================================================================= -->
     <section id="page-3" class="page-section flex-1 flex-col px-4 md:px-14 py-4 sm:py-6 relative">
         <!-- Judul Kiri Atas: ISI KARTU -->
@@ -123,10 +123,10 @@
             <!-- Kolom Kiri: Ilustrasi 4 Kartu Bertumpuk (Diisi SVG Asli lewat JS) -->
             <div class="flex flex-col items-center justify-center">
                 <div class="card-group relative w-48 h-48 sm:w-72 sm:h-80 flex items-center justify-center cursor-pointer" onclick="openCategoryModal('all')" role="button" tabindex="0" aria-label="Lihat semua visualisasi kartu">
-                    <!-- Kartu 1 (Kiri - Pertanyaan Umum Pink Bunga Biru) -->
-                    <div id="stack-slot-umum" class="stacked-card sc-1 absolute w-24 h-36 sm:w-40 sm:h-60 transform -translate-x-8 -translate-y-1 -rotate-12 overflow-hidden"></div>
-                    <!-- Kartu 2 (Atas Tengah - Pertanyaan Khusus Biru Bunga Pink) -->
-                    <div id="stack-slot-khusus" class="stacked-card sc-2 absolute w-24 h-36 sm:w-40 sm:h-60 transform translate-x-2 -translate-y-5 rotate-3 overflow-hidden"></div>
+                    <!-- Kartu 1 (Kiri - Pertanyaan Khusus Pink Bunga Biru) -->
+                    <div id="stack-slot-khusus" class="stacked-card sc-1 absolute w-24 h-36 sm:w-40 sm:h-60 transform -translate-x-8 -translate-y-1 -rotate-12 overflow-hidden"></div>
+                    <!-- Kartu 2 (Atas Tengah - Pertanyaan Umum Biru Bunga Pink) -->
+                    <div id="stack-slot-umum" class="stacked-card sc-2 absolute w-24 h-36 sm:w-40 sm:h-60 transform translate-x-2 -translate-y-5 rotate-3 overflow-hidden"></div>
                     <!-- Kartu 3 (Kanan - Visual Card) -->
                     <div id="stack-slot-visual" class="stacked-card sc-3 absolute w-24 h-36 sm:w-40 sm:h-60 transform translate-x-10 translate-y-1 rotate-12 overflow-hidden"></div>
                     <!-- Kartu 4 (Depan Bawah - Sampul Belakang Holografik Talk For Two) -->
@@ -134,7 +134,7 @@
                 </div>
 
                 <p class="font-hand text-xl sm:text-4xl text-[#5A3E5C] mt-1.5 sm:mt-5 tracking-wide">
-                    Total 46 Kartu
+                    Total 50 Kartu
                 </p>
                 <span class="text-[11px] sm:text-xs text-[#8E6D94] font-medium">
                     (Ketuk tumpukan kartu atau pilih kategori di bawah)
@@ -143,17 +143,17 @@
 
             <!-- Kolom Kanan: 3 Kotak Kategori Kartu -->
             <div class="flex flex-col gap-2 sm:gap-5">
-                <button onclick="openCategoryModal('umum')" class="sketch-box-lilac w-full py-2.5 sm:py-5 px-4 sm:px-6 flex items-center justify-between gap-3 text-left">
+                <button onclick="openCategoryModal('khusus')" class="sketch-box-lilac w-full py-2.5 sm:py-5 px-4 sm:px-6 flex items-center justify-between gap-3 text-left">
                     <div>
-                        <span class="block font-hand text-xl sm:text-3xl text-[#E06D94] leading-tight">Pertanyaan Umum</span>
+                        <span class="block font-hand text-xl sm:text-3xl text-[#E06D94] leading-tight">Pertanyaan Khusus</span>
                         <span class="block text-[11px] sm:text-sm text-[#7B587E] font-medium">Kartu Pink Pastel • Bunga Biru</span>
                     </div>
                     <span class="shrink-0 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#FFE0EC] text-[#C94A7C] font-hand text-base sm:text-xl">18 kartu</span>
                 </button>
 
-                <button onclick="openCategoryModal('khusus')" class="sketch-box-lilac w-full py-2.5 sm:py-5 px-4 sm:px-6 flex items-center justify-between gap-3 text-left">
+                <button onclick="openCategoryModal('umum')" class="sketch-box-lilac w-full py-2.5 sm:py-5 px-4 sm:px-6 flex items-center justify-between gap-3 text-left">
                     <div>
-                        <span class="block font-hand text-xl sm:text-3xl text-[#3A6B9C] leading-tight">Pertanyaan Khusus</span>
+                        <span class="block font-hand text-xl sm:text-3xl text-[#3A6B9C] leading-tight">Pertanyaan Umum</span>
                         <span class="block text-[11px] sm:text-sm text-[#7B587E] font-medium">Kartu Biru Langit • Bunga Pink</span>
                     </div>
                     <span class="shrink-0 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#DCEBFA] text-[#3A6B9C] font-hand text-base sm:text-xl">18 kartu</span>
@@ -162,9 +162,9 @@
                 <button onclick="openCategoryModal('visual')" class="sketch-box-lilac w-full py-2.5 sm:py-5 px-4 sm:px-6 flex items-center justify-between gap-3 text-left">
                     <div>
                         <span class="block font-hand text-xl sm:text-3xl text-[#D85A88] leading-tight">Visual Card &amp; Action</span>
-                        <span class="block text-[11px] sm:text-sm text-[#7B587E] font-medium">5 Tema Ilustrasi + PASS &amp; Discuss</span>
+                        <span class="block text-[11px] sm:text-sm text-[#7B587E] font-medium">10 Visual Card + 4 Action Card</span>
                     </div>
-                    <span class="shrink-0 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#FCE4EC] text-[#D85A88] font-hand text-base sm:text-xl">10 kartu</span>
+                    <span class="shrink-0 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#FCE4EC] text-[#D85A88] font-hand text-base sm:text-xl">14 kartu</span>
                 </button>
 
                 <div class="flex flex-wrap items-center justify-center gap-2.5 pt-1 sm:pt-2">
@@ -232,8 +232,8 @@
                 <!-- text-base (16px) di HP mencegah iOS Safari auto-zoom -->
                 <select id="deck-filter" onchange="shuffleAndDealUno()" aria-label="Filter tipe kartu" class="flex-1 sm:flex-none min-w-0 min-h-[40px] sm:min-h-0 px-2.5 py-1.5 rounded-xl bg-[#EFE5F7] text-[#5A3E5C] font-semibold text-base sm:text-xs border border-pink-300 focus:outline-none">
                     <option value="all">Semua (10 Desain)</option>
-                    <option value="umum">Umum (Pink)</option>
-                    <option value="khusus">Khusus (Biru)</option>
+                    <option value="khusus">Khusus (Pink)</option>
+                    <option value="umum">Umum (Biru)</option>
                     <option value="visual">Visual &amp; Action</option>
                     <option value="back">Sampul Kartu</option>
                 </select>

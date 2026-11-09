@@ -1,20 +1,20 @@
 /* =====================================================================
    DATA VISUALISASI KARTU TALK FOR TWO
-   - Panduan Penggunaan & Spesifikasi Kartu
-   - Generator SVG Desain Kartu Presisi Sesuai PDF Referensi:
+   - Panduan Penggunaan & Spesifikasi Kartu (Total 50 Kartu)
+   - Generator SVG Desain Kartu Presisi Sesuai Spesifikasi:
      1. Sampul Belakang Kartu (Holografik Pastel + 2 Beruang + Tipografi)
-     2. Pertanyaan Umum (18 Kartu - Bingkai Marmer Pink, Tengah Pink, Bunga Biru)
-     3. Pertanyaan Khusus (18 Kartu - Bingkai Marmer Biru, Tengah Biru, Bunga Pink)
-     4. Visual Card & Action Card (10 Kartu):
-        - 5 Kartu Tema Ilustrasi (Pasangan, Pertemanan, Keluarga, Karier, Anak)
-        - 2 Kartu Aksi (PASS & NEED TO DISCUSS)
+     2. Pertanyaan Khusus (Kartu Pink - 18 Kartu - Bingkai Marmer Pink, Tengah Pink, Bunga Biru)
+     3. Pertanyaan Umum (Kartu Biru - 18 Kartu - Bingkai Marmer Biru, Tengah Biru, Bunga Pink)
+     4. Visual Card & Action Card (14 Kartu - Total 50 Kartu):
+        - 10 Kartu Visual: Pasangan, Pertemanan, Keluarga, Karier, Anak (Masing-masing 2 kartu / 5 tema)
+        - 4 Kartu Aksi: 2 PASS Cards & 2 NEED TO DISCUSS Cards
    ===================================================================== */
 
 const DAFTAR_INSTRUKSI = [
     {
-        step: "1. Persiapkan Kartu",
+        step: "1. Persiapkan Kartu (Total 50 Kartu)",
         points: [
-            "Satu paket permainan terdiri dari 36 Question Cards, 10 Visual Cards, 2 Pass Cards, dan 2 Discuss Cards.",
+            "Satu paket permainan terdiri dari 36 Question Cards (18 Kartu Biru UMUM & 18 Kartu Pink KHUSUS), 10 Visual Cards, 2 Pass Cards, dan 2 Discuss Cards (Total 50 kartu).",
             "Setiap pemain mendapatkan 5 Visual Cards, 1 Pass Card, dan 1 Discuss Card."
         ]
     },
@@ -29,7 +29,7 @@ const DAFTAR_INSTRUKSI = [
         step: "3. Jawab Pertanyaan",
         points: [
             "Jawab pertanyaan sesuai dengan topik yang tertera pada kartu.",
-            "Khusus untuk Question Cards berwarna pink, gunakan Visual Cards untuk membantu menjawab pertanyaan melalui pemilihan atau pengurutan prioritas."
+            "Khusus untuk Question Cards berwarna pink (KHUSUS), gunakan Visual Cards untuk membantu menjawab pertanyaan melalui pemilihan atau pengurutan prioritas."
         ]
     },
     {
@@ -52,39 +52,39 @@ const DAFTAR_INSTRUKSI = [
 // Daftar Tipe Desain Kartu untuk Showcase Visualisasi
 const CARD_VISUAL_TYPES = [
     {
-        id: 'umum',
-        category: 'umum',
-        title: 'Kartu Pertanyaan Umum',
-        subtitle: '18 Kartu • Desain Pink Floral Biru',
+        id: 'khusus',
+        category: 'khusus',
+        title: 'Kartu Pertanyaan Khusus',
+        subtitle: '18 Kartu • Kartu Pink Floral Biru',
         countLabel: '18 Kartu',
         badgeBg: '#FFE0EC',
         badgeText: '#C94A7C',
         borderColor: '#F48FB1',
-        description: 'Kartu dengan bingkai motif marmer lembut, area tengah merah muda pastel, logo 2 beruang di bagian bawah, dan ilustrasi bunga biru (flax flower) di sudut kanan bawah.',
-        svgType: 'umum-front'
+        description: 'Kartu Pink untuk pertanyaan Khusus/Deep Talk dengan bingkai marmer lembut, area tengah merah muda pastel, logo 2 beruang di bagian bawah, dan aksen bunga biru di sudut kanan bawah.',
+        svgType: 'khusus-front'
     },
     {
-        id: 'khusus',
-        category: 'khusus',
-        title: 'Kartu Pertanyaan Khusus',
-        subtitle: '18 Kartu • Desain Biru Floral Pink',
+        id: 'umum',
+        category: 'umum',
+        title: 'Kartu Pertanyaan Umum',
+        subtitle: '18 Kartu • Kartu Biru Floral Pink',
         countLabel: '18 Kartu',
         badgeBg: '#DCEBFA',
         badgeText: '#3A6B9C',
         borderColor: '#90CAF9',
-        description: 'Kartu dengan bingkai motif marmer sejuk, area tengah biru langit pastel, logo 2 beruang di bagian bawah, dan ilustrasi bunga merah muda di sudut kanan bawah.',
-        svgType: 'khusus-front'
+        description: 'Kartu Biru untuk pertanyaan Umum dengan bingkai marmer sejuk, area tengah biru langit pastel, logo 2 beruang di bagian bawah, dan aksen bunga merah muda di sudut kanan bawah.',
+        svgType: 'umum-front'
     },
     {
         id: 'visual-pasangan',
         category: 'visual',
         title: 'Visual Card — Pasangan',
         subtitle: 'Tema Obrolan Pasangan',
-        countLabel: 'Visual Tema #1',
+        countLabel: 'Visual Card',
         badgeBg: '#FCE4EC',
         badgeText: '#D85A88',
         borderColor: '#F48FB1',
-        description: 'Kartu visual bertema Pasangan dengan ilustrasi pasangan duduk santai mengobrol berdua, ikon hati tersenyum di kiri atas, dan ponsel lipat retro di kanan bawah.',
+        description: 'Visual Card — Pasangan',
         svgType: 'visual-pasangan'
     },
     {
@@ -92,11 +92,11 @@ const CARD_VISUAL_TYPES = [
         category: 'visual',
         title: 'Visual Card — Pertemanan',
         subtitle: 'Tema Lingkar Pertemanan',
-        countLabel: 'Visual Tema #2',
+        countLabel: 'Visual Card',
         badgeBg: '#FFF3E0',
         badgeText: '#D86C50',
         borderColor: '#FFAB91',
-        description: 'Kartu visual bertema Pertemanan dengan ilustrasi sahabat yang saling berjabat tangan dan berkumpul, pelangi di kiri atas, serta bintang biru di kanan bawah.',
+        description: 'Visual Card — Pertemanan',
         svgType: 'visual-pertemanan'
     },
     {
@@ -104,11 +104,11 @@ const CARD_VISUAL_TYPES = [
         category: 'visual',
         title: 'Visual Card — Keluarga',
         subtitle: 'Tema Kehangatan Keluarga',
-        countLabel: 'Visual Tema #3',
+        countLabel: 'Visual Card',
         badgeBg: '#EFE5F7',
         badgeText: '#6E4F8E',
         borderColor: '#CE93D8',
-        description: 'Kartu visual bertema Keluarga dengan ilustrasi keluarga lintas generasi yang hangat, ornamen kilau simetris di bagian judul, dan keranjang bunga di kiri bawah.',
+        description: 'Visual Card — Keluarga',
         svgType: 'visual-keluarga'
     },
     {
@@ -116,11 +116,11 @@ const CARD_VISUAL_TYPES = [
         category: 'visual',
         title: 'Visual Card — Karier',
         subtitle: 'Tema Impian & Pekerjaan',
-        countLabel: 'Visual Tema #4',
+        countLabel: 'Visual Card',
         badgeBg: '#E8EAF6',
         badgeText: '#49599A',
         borderColor: '#9FA8DA',
-        description: 'Kartu visual bertema Karier dengan ilustrasi meja kerja produktif (laptop, buku catatan, kopi, alat tulis), bintang jatuh di kanan atas, dan ikon folder di kanan bawah.',
+        description: 'Visual Card — Karier',
         svgType: 'visual-karier'
     },
     {
@@ -128,11 +128,11 @@ const CARD_VISUAL_TYPES = [
         category: 'visual',
         title: 'Visual Card — Anak',
         subtitle: 'Tema Masa Depan & Anak',
-        countLabel: 'Visual Tema #5',
+        countLabel: 'Visual Card',
         badgeBg: '#E3F2FD',
         badgeText: '#3A6B9C',
         borderColor: '#90CAF9',
-        description: 'Kartu visual bertema Anak dengan ilustrasi orang tua memeluk buah hati di dalam bingkai hati, matahari ceria di kiri atas, dan balok huruf A-B-C di kanan bawah.',
+        description: 'Visual Card — Anak',
         svgType: 'visual-anak'
     },
     {
@@ -144,7 +144,7 @@ const CARD_VISUAL_TYPES = [
         badgeBg: '#FCE4EC',
         badgeText: '#D85A88',
         borderColor: '#CE93D8',
-        description: 'Kartu aksi berwarna merah muda lembut dengan bingkai ungu pastel dan tipografi "PASS" miring untuk melewati giliran pertanyaan yang belum ingin dijawab.',
+        description: 'Action Card — PASS',
         svgType: 'action-pass'
     },
     {
@@ -156,7 +156,7 @@ const CARD_VISUAL_TYPES = [
         badgeBg: '#E1F5FE',
         badgeText: '#0277BD',
         borderColor: '#F48FB1',
-        description: 'Kartu aksi berwarna krem hangat dengan bingkai pink pastel dan tipografi biru "NEED TO DISCUSS" untuk menandai topik penting yang perlu dibahas lebih dalam.',
+        description: 'Action Card — NEED TO DISCUSS',
         svgType: 'action-discuss'
     },
     {
@@ -164,11 +164,11 @@ const CARD_VISUAL_TYPES = [
         category: 'back',
         title: 'Sampul Belakang Kartu (Card Back)',
         subtitle: 'Desain Seragam Semua Kartu',
-        countLabel: '46 Kartu',
+        countLabel: '50 Kartu',
         badgeBg: '#EFE5F7',
         badgeText: '#6A4C82',
         borderColor: '#CE93D8',
-        description: 'Desain bagian belakang seluruh kartu TALK for Two dengan gradasi holografik pastel (krem, biru langit, lavender, dan merah muda) serta logo 2 beruang berpelukan.',
+        description: 'Desain bagian belakang seluruh 50 kartu TALK for Two dengan gradasi holografik pastel dan logo 2 beruang berpelukan.',
         svgType: 'card-back'
     }
 ];
@@ -299,9 +299,9 @@ function generateCardSVG(svgType) {
             </svg>`;
 
         // =================================================================
-        // 2. KARTU PERTANYAAN UMUM - PINK & BUNGA BIRU (COMING (1).pdf)
+        // 2. KARTU PERTANYAAN KHUSUS - KARTU PINK & BUNGA BIRU
         // =================================================================
-        case 'umum-front':
+        case 'khusus-front':
             return `
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 380" class="w-full h-full select-none">
                 <!-- Latar Bingkai Putih Marmer Hangat -->
@@ -317,10 +317,10 @@ function generateCardSVG(svgType) {
                 <rect x="20" y="26" width="220" height="328" rx="22" fill="#FDE4EC"/>
 
                 <!-- Petunjuk Area Teks Pertanyaan (Halus) -->
-                <g opacity="0.42">
-                    <text x="130" y="158" text-anchor="middle" font-family="'Quicksand', sans-serif" font-weight="700" font-size="11" fill="#C95A82" letter-spacing="1.5">PERTANYAAN UMUM</text>
+                <g opacity="0.48">
+                    <text x="130" y="158" text-anchor="middle" font-family="'Quicksand', sans-serif" font-weight="700" font-size="11" fill="#C95A82" letter-spacing="1.5">PERTANYAAN KHUSUS</text>
                     <line x1="85" y1="172" x2="175" y2="172" stroke="#E899B5" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 4"/>
-                    <text x="130" y="190" text-anchor="middle" font-family="'Quicksand', sans-serif" font-weight="600" font-size="9.5" fill="#B86B88">(Area Cetak Teks Pertanyaan)</text>
+                    <text x="130" y="190" text-anchor="middle" font-family="'Quicksand', sans-serif" font-weight="600" font-size="9.5" fill="#B86B88">(Area Cetak Teks Deep Talk)</text>
                 </g>
 
                 <!-- Logo 2 Beruang di Tengah Bawah -->
@@ -333,9 +333,9 @@ function generateCardSVG(svgType) {
             </svg>`;
 
         // =================================================================
-        // 3. KARTU PERTANYAAN KHUSUS - BIRU & BUNGA PINK (COMING (2).pdf)
+        // 3. KARTU PERTANYAAN UMUM - KARTU BIRU & BUNGA PINK
         // =================================================================
-        case 'khusus-front':
+        case 'umum-front':
             return `
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 380" class="w-full h-full select-none">
                 <!-- Latar Bingkai Putih Marmer Sejuk -->
@@ -351,9 +351,9 @@ function generateCardSVG(svgType) {
 
                 <!-- Petunjuk Area Teks Pertanyaan (Halus) -->
                 <g opacity="0.48">
-                    <text x="130" y="158" text-anchor="middle" font-family="'Quicksand', sans-serif" font-weight="700" font-size="11" fill="#365F8A" letter-spacing="1.5">PERTANYAAN KHUSUS</text>
+                    <text x="130" y="158" text-anchor="middle" font-family="'Quicksand', sans-serif" font-weight="700" font-size="11" fill="#365F8A" letter-spacing="1.5">PERTANYAAN UMUM</text>
                     <line x1="85" y1="172" x2="175" y2="172" stroke="#6897C4" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 4"/>
-                    <text x="130" y="190" text-anchor="middle" font-family="'Quicksand', sans-serif" font-weight="600" font-size="9.5" fill="#466E96">(Area Cetak Teks Deep Talk)</text>
+                    <text x="130" y="190" text-anchor="middle" font-family="'Quicksand', sans-serif" font-weight="600" font-size="9.5" fill="#466E96">(Area Cetak Teks Pertanyaan)</text>
                 </g>
 
                 <!-- Logo 2 Beruang di Tengah Bawah -->
