@@ -170,8 +170,8 @@ function openCategoryModal(category) {
 
     const titles = {
         all: 'Visualisasi Seluruh Desain Kartu (50 Kartu)',
-        khusus: 'Visualisasi Kartu Pertanyaan Khusus (18 Kartu)',
-        umum: 'Visualisasi Kartu Pertanyaan Umum (18 Kartu)',
+        khusus: 'Visualisasi Kartu Pertanyaan Khusus (16 Kartu)',
+        umum: 'Visualisasi Kartu Pertanyaan Umum (20 Kartu)',
         visual: 'Visualisasi Visual Card & Action Card (14 Kartu)'
     };
     titleEl.textContent = titles[validCat] || 'Visualisasi Desain Kartu';
